@@ -10,4 +10,10 @@ class Exam extends Model
 
     protected $table      = 'exams';
     protected $primaryKey = 'id';
+    protected $fillable   = [
+        'title', 'user_id', 'enable',
+    ];
+    protected $casts = [
+        'enable' => 'boolean',
+    ];
 }

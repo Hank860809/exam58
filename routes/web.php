@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ExamController@index')->name('index');
+Route::get('/home', 'ExamController@index')->name('home.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/exam/create', function () {
-    return view('exam.create');
-})->name('exam.create');
+Route::get('/exam', 'ExamController@index')->name('exam.index');
+Route::get('/exam/create', 'ExamController@create')->name('exam.create');
+Route::post('exam/exam', 'ExamController@store')->name('exam.store');
+Route::get('/exam/{exam}', 'ExamController@show')->name('exam.show');
+Route::post('/exam/topic', 'TopicController@store')->name('topic.store');

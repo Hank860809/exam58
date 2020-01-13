@@ -27,13 +27,13 @@
                     @endif
                 @else
                 @section('my_menu')
-                    @can('後台管理')
-                        <li><a class="nav-link" href="/admin">{{ __('Admin') }}</a></li>
-                    @endcan
+                    {{-- @can('後台管理') --}}
+                        <li><a class="nav-link" href="admin">{{ __('Admin') }}</a></li>
+                    {{-- @endcan --}}
 
-                    @can('建立測驗')
+                    {{-- @can('建立測驗') --}}
                         <li><a class="nav-link" href="{{ route('exam.create') }}">{{ __('Create Exam') }}</a></li>
-                    @endcan
+                    {{-- @endcan --}}
                 @show
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

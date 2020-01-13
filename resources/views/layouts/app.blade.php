@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/opt.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -25,6 +26,11 @@
         <main class="py-4">
             <div class="container">
                 @yield('content')
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
         </main>
     </div>
