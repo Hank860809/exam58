@@ -35,8 +35,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        $topic = Topic::create($request->all());
-        return redirect()->route('exam.show', $topic->exam_id);
+        //
     }
 
     /**
@@ -56,9 +55,10 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Topic $topic)
     {
-        //
+        $exam   = $topic->exam;
+        return view('exam.show', compact('exam', 'topic'));
     }
 
     /**
@@ -68,9 +68,10 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Topic $topic)
     {
-        //
+        $topic->update($request->all());
+        return redirect()->route('exam.show', $topic->exam_id);
     }
 
     /**
@@ -79,8 +80,9 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+        return redirect()->route('exam.show', $topic->exam_id);
     }
 }
