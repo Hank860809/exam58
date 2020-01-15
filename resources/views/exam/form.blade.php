@@ -1,7 +1,7 @@
 @if(isset($topic))
             {{ bs()->openForm('patch', "http://127.0.0.1/exam58/public/topic/{$topic->id}", ['model' => $topic]) }}
         @else
-            {{ bs()->openForm('post', 'http://127.0.0.1/exam58/public/topic') }}
+            {{ bs()->openForm('post', 'http://127.0.0.1/exam58/public/exam/topic') }}
         @endif
             {{ bs()->formGroup()
                     ->label('題目內容', false, 'text-sm-right')

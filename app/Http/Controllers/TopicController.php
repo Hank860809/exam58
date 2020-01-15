@@ -35,7 +35,8 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $topic = Topic::create($request->all());
+        return redirect()->route('exam.show', $topic->exam_id);
     }
 
     /**
