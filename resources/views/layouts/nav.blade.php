@@ -27,7 +27,7 @@
                     @endif
                 @else
                 @section('my_menu')
-                    @can('後台管理')
+                    @can('建立測驗')
                         <li><a class="nav-link" href='http://127.0.0.1/exam58/public/admin'>{{ __('Admin') }}</a></li>
                     @endcan
 

@@ -1,4 +1,3 @@
-@extends('layouts.app')
 @section('content')
     <h1>測驗一覽<small>（共 {{$exams->total()}} 筆資料）</small></h1>
     <ul class="list-group">
@@ -20,3 +19,8 @@
         {{ $exams->links() }}
     </div>
 @endsection
+@can('建立測驗')
+    @include('backpack::layout')
+@else
+    @include('layouts.app')
+@endif

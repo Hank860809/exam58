@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backpack::layout')
 @section('content')
     <h1>{{ __('Create Exam') }}</h1>
     @can('建立測驗')

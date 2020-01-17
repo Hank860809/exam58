@@ -18,14 +18,24 @@ class ExamController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user and $user->can('建立測驗')) {
-            $exams = Exam::orderBy('created_at', 'desc')
-                ->paginate(3);
-        } else {
-            $exams = Exam::where('enable', 1)
-                ->orderBy('created_at', 'desc')
-                ->paginate(2);
+        // dd(url()->full());
+        // dd(get_class_methods(url()));
+        if(url()->full()=="http://127.0.0.1/exam58/public/admin/exam"){
+            if ($user and $user->can('建立測驗')) {
+                $exams = Exam::orderBy('created_at', 'desc')
+                    ->paginate(3);
+            } else {
+                $exams = Exam::where('enable', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(2);
+            }
         }
+        else{
+            $exams = Exam::where('enable', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(2);
+        }
+
 
         return view('exam.index', compact('exams'));
     }
