@@ -67,7 +67,6 @@ class TestController extends Controller
             $content[$i]['topic'] = Topic::find($topic_id);
             $content[$i]['ans']   = $ans;
             $i++;
-
         }
         return view('exam.test', compact('test', 'content'));
     }

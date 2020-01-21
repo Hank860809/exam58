@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+// use Illuminate\Contracts\Auth\Authenticatable;
 
 class AdminMiddleware
 {
@@ -15,15 +17,17 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->user());
         if ($request->user()->hasAnyPermission('後台管理')) {
         // if ($request->user()){
             return $next($request);
 
         }
-        elseif($request->user()->hasAnyPermission('建立測驗')) {
-            return $next($request);
-        }
+        // elseif($request->user()->hasAnyPermission('建立測驗')) {
+        //     // dd($next->call());
+        //     return $next($request);
+        // }
+        // dd(Auth::guard()->user()->name);
+        // dd(get_class_methods(Auth::guard()->user()->roles()));
         abort(403);
     }
 }

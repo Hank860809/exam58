@@ -55,11 +55,9 @@ class CheckIfAdmin
         if (backpack_auth()->guest()) {
             return $this->respondToUnauthorizedRequest($request);
         }
-
         if (!$this->checkIfUserIsAdmin(backpack_user())) {
             return $this->respondToUnauthorizedRequest($request);
         }
-
         return $next($request);
     }
 }
