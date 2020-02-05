@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -58,8 +59,9 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        $exam   = $topic->exam;
-        return view('exam.show', compact('exam', 'topic'));
+        $exam = $topic->exam;
+        $user = Auth::user();
+        return view('exam.show', compact('exam', 'topic','user'));
     }
 
     /**

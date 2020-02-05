@@ -3,9 +3,9 @@
     <h1>{{ __('Create Exam') }}</h1>
     @can('建立測驗')
         @if(isset($exam))
-            {{ bs()->openForm('patch', "http://127.0.0.1/exam58/public/exam/{$exam->id}" , [ 'model' => $exam]) }}
+            {{ bs()->openForm('patch', "http://localhost/exam58/public/exam/{$exam->id}" , [ 'model' => $exam]) }}
         @else
-            {{ bs()->openForm('post', 'http://127.0.0.1/exam58/public/exam') }}
+            {{ bs()->openForm('post', 'http://localhost/exam58/public/exam') }}
         @endif
             {{ bs()->formGroup()
                     ->label('測驗標題', false, 'text-sm-right')

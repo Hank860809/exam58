@@ -1,4 +1,5 @@
 @section('content')
+    {{-- {{dd($user)}} --}}
     <h1 class="text-center">
         {{$exam->title}}
         @can('建立測驗')
@@ -14,9 +15,9 @@
     @can('建立測驗')
         @include('exam.form')
     @endcan
-    @if(Auth::check('建立測驗') || Auth::check('進行測驗'))
+    @if($user->can('建立測驗') || $user->can('進行測驗'))
         @can('進行測驗')
-            {{ bs()->openForm('post', 'http://127.0.0.1/exam58/public/test') }}
+            {{ bs()->openForm('post', 'http://localhost/exam58/public/test') }}
                 @include('exam.topic')
                 {{ bs()->hidden('user_id', Auth::id()) }}
                 {{ bs()->hidden('exam_id', $exam->id) }}

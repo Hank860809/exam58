@@ -20,23 +20,22 @@ class ExamController extends Controller
         $user = Auth::user();
         // dd(url()->full());
         // dd(get_class_methods(url()));
-        if(url()->full()=="http://127.0.0.1/exam58/public/admin/exam"){
-            if ($user and $user->can('建立測驗')) {
-                $exams = Exam::orderBy('created_at', 'desc')
-                    ->paginate(3);
-            } else {
-                $exams = Exam::where('enable', 1)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(2);
-            }
-        }
-        else{
+        // dd($user==null);
+        if($user==null){
             $exams = Exam::where('enable', 1)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(2);
+                ->orderBy('created_at', 'desc')
+                ->paginate(2);
+        }
+        elseif ($user->can('建立測驗')) {
+            $exams = Exam::orderBy('created_at', 'desc')
+                ->paginate(3);
+        } else {
+            $exams = Exam::where('enable', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate(2);
         }
 
-
+        // dd($exams);
         return view('exam.index', compact('exams'));
     }
 
@@ -77,7 +76,7 @@ class ExamController extends Controller
         if ($user and $user->can('進行測驗')) {
             $exam->topics = $exam->topics->random(10);
         }
-        return view('exam.show', compact('exam'));
+        return view('exam.show', compact('exam','user'));
     }
 
     /**
